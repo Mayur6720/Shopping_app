@@ -1,10 +1,10 @@
-<script lang="ts">
+<script>
 	import { cn } from '$lib/utils';
 
-	export let img: string;
-	export let name: string;
-	export let username: string;
-	export let body: string;
+	export let img;
+	export let name;
+	export let username;
+	export let body;
 </script>
 
 <figure

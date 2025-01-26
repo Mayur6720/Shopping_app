@@ -1,12 +1,12 @@
-<script lang="ts">
+<script>
 	import { cn } from '$lib/utils';
-	let className: any = '';
+	let className = '';
 	export { className as class };
-	export let reverse: boolean = false;
-	export let duration: number = 20;
-	export let delay: number = 0;
-	export let radius: number = 50;
-	export let path: boolean = true;
+	export let reverse = false;
+	export let duration = 20;
+	export let delay = 0;
+	export let radius = 50;
+	export let path = true;
 </script>
 
 {#if path}

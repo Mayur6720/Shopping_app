@@ -1,4 +1,4 @@
-<div class="navbar flex justify-between bg-base-100">
+<div class="bg- glass navbar sticky top-0 z-10 mb-3 flex justify-between">
 	<div class="">
 		<a class="cursor-pointer text-xl font-semibold text-[#5f50d4]" href="/">Shopplers</a>
 	</div>
