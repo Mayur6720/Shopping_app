@@ -1,9 +1,9 @@
-<script lang="ts">
+<script>
 	import { cn } from '$lib/utils';
 	import LandingPageProduct from '../section/LandingPageProduct.svelte';
 	import OrbitingCircles from '../components/OrbitingCircles.svelte';
 	import CommentsMarquee from '../section/CommentsMarquee.svelte';
-	let className: any = '';
+	let className = '';
 	export { className as class };
 </script>
 

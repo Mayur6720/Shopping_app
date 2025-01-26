@@ -1,6 +1,7 @@
 <script>
 	import NavBar from '$lib/NavBar.svelte';
 	import '../app.css';
+	import Footer from '../section/Footer.svelte';
 	let { children } = $props();
 </script>
 
@@ -11,10 +12,7 @@
 	/>
 </svelte:head>
 <NavBar />
+
 {@render children()}
 
-<style>
-	:global(body) {
-		font-family: 'Roboto Mono', serif;
-	}
-</style>
+<Footer />

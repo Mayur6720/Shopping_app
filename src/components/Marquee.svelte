@@ -1,11 +1,11 @@
-<script lang="ts">
+<script>
 	import { cn } from '$lib/utils';
-	export let pauseOnHover: boolean = false;
-	export let vertical: boolean = false;
-	export let repeat: number = 4;
-	export let reverse: boolean = false;
+	export let pauseOnHover = false;
+	export let vertical = false;
+	export let repeat = 4;
+	export let reverse = false;
 
-	let className: any = '';
+	let className = '';
 	export { className as class };
 </script>
 
