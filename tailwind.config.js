@@ -44,7 +44,7 @@ export default {
 				light: {
 					primary: '#000',
 					accent: '#fff',
-					secondary: '#7f7f7f'
+					secondary: '#dad7cd'
 				}
 			},
 			{
