@@ -53,7 +53,8 @@ export default {
 					primary: '#bc6c25'
 				}
 			},
-			'cupcake'
+			'cupcake',
+			'retro'
 		]
 	},
 

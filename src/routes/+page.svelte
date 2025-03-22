@@ -3,8 +3,22 @@
 	import LandingPageProduct from '../section/LandingPageProduct.svelte';
 	import OrbitingCircles from '../components/OrbitingCircles.svelte';
 	import CommentsMarquee from '../section/CommentsMarquee.svelte';
+	import { isToastShow, userT } from '$lib/store';
+	import { onMount } from 'svelte';
 	let className = '';
 	export { className as class };
+
+	onMount(() => {
+		if (!$userT) {
+			$isToastShow = {
+				isShow: true,
+				toastText: 'Please sign in to enter',
+				toastType: 'info',
+				toastIcon: 'info'
+			};
+			redirect(307, '/login'); // 307 preserves method (GET/POST)
+		}
+	});
 </script>
 
 <!-- <div class="flex"> -->
@@ -14,8 +28,8 @@
 		Helllo this
 	</div> -->
 
-<div class=" flex justify-around dark:text-primary">
-	<div class="ml-10 mt-[2.5rem] flex !w-3/4 flex-col gap-2">
+<div class="flex !h-[92vh] items-center justify-around gap-2 dark:text-primary">
+	<div class=" ml-2 flex !w-2/4 flex-col gap-2">
 		<span class="w-1/2 capitalize lg:text-6xl"
 			>The trandition of <span class="text-[#5f50d4]">excellence</span> since</span
 		>
@@ -26,16 +40,10 @@
 	</div>
 	<div
 		class={cn(
-			' relative mr-[5rem] flex h-[400px] w-full max-w-[26rem] items-center justify-center overflow-hidden',
+			' relative flex h-[400px] w-full max-w-[26rem] items-center justify-center overflow-hidden',
 			className
 		)}
 	>
-		<!-- <span
-		class="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-8xl font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10"
-	>
-		
-	</span> -->
-
 		<!--  Inner Circles  -->
 		<OrbitingCircles class="h-[40px] w-[40px] border-none bg-transparent" duration={20} radius={80}>
 			<!-- Open AI -->
@@ -110,6 +118,11 @@
 	</div>
 </div>
 
-<LandingPageProduct />
+<div class="divider divider-primary my-[5rem]">New Release</div>
 
+<div class="mx-auto h-fit w-11/12">
+	<LandingPageProduct />
+</div>
+
+<div class="divider divider-primary mt-[5rem]">What people saying</div>
 <CommentsMarquee />

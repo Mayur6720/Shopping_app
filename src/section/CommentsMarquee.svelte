@@ -45,10 +45,8 @@
 	let secondRow = reviews.slice(reviews.length / 2);
 </script>
 
-<div class="divider divider-primary mt-[5rem]">What people saying</div>
-
 <div
-	class="bg-background relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg py-20 md:shadow-xl"
+	class=" relative mb-[4rem] flex h-[55vh] w-full flex-col items-center justify-center overflow-hidden rounded-lg pb-5"
 >
 	<Marquee pauseOnHover class="[--duration:20s]">
 		{#each firstRow as item}

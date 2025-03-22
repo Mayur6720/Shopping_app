@@ -1,8 +1,11 @@
 <script>
 	import SingleProduct from '../../../components/SingleProduct.svelte';
+	import { page } from '$app/stores';
 	export let data;
-	console.log('dataaaaaaaa', data);
 	let { product } = data;
+	$: console.log('dataaaaaaaa', product);
 </script>
 
-<SingleProduct {product} />
+<div class="flex items-center justify-center">
+	<SingleProduct {product} />
+</div>

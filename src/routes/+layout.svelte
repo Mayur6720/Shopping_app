@@ -1,8 +1,16 @@
 <script>
 	import NavBar from '$lib/NavBar.svelte';
+	import { isFooterShow } from '$lib/store';
+	import { onDestroy } from 'svelte';
 	import '../app.css';
 	import Footer from '../section/Footer.svelte';
 	let { children } = $props();
+
+	// let unsubscribe = isFooterShow.subscribe((value) => {
+	// 	console.log('Footer visibility:', value);
+	// });
+
+	// onDestroy(() => unsubscribe());
 </script>
 
 <svelte:head>
@@ -15,4 +23,6 @@
 
 {@render children()}
 
-<Footer />
+{#if $isFooterShow}
+	<Footer />
+{/if}

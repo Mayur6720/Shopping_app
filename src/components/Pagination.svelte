@@ -3,7 +3,7 @@
 	export let currentPage = 1;
 </script>
 
-<div class="mx-auto flex w-fit items-center gap-1">
+<div class="mx-auto my-5 flex w-fit items-center gap-1">
 	<div class="">
 		<span
 			class="material-symbols-outlined flex"

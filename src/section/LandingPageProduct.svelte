@@ -1,51 +1,74 @@
 <script>
+	import api from '$lib/Axios.interceptor';
+	import { userT } from '$lib/store';
 	import NewRealaseProductCard from '../components/NewRealaseProductCard.svelte';
+	import ProductCard from '../components/ProductCard.svelte';
+
+	let perPage = 10;
+	let currentPage = 1;
+	let pageLength = 10;
+	let products = [];
+	let isLoader = false;
+
+	const productApiCall = async () => {
+		isLoader = true;
+		try {
+			// const token = $userT;
+
+			const axiosResponse = await api.get(`${import.meta.env.VITE_BACKEND_API_URL}products`, {
+				params: { perPage: 8, page: 3 }
+			});
+
+			const {
+				products: newProducts,
+				perPage: perPages,
+				totalProducts,
+				page
+			} = (await axiosResponse).data;
+
+			// console.log('axiosResponse', await axiosResponse.data);
+			// pageLength = Math.ceil(totalProducts / perPage);
+			products = [...newProducts];
+			isLoader = false;
+		} catch (error) {
+			// Handle Axios errors
+			if (error.response) {
+				// Server responded with a status code outside the 2xx range
+				console.warn('Server Error:', error.response.status, error.response.data);
+				// alert(`Error: ${error.response.data.message || 'Something went wrong!'}`);
+			} else if (error.request) {
+				// Request was made but no response received
+				console.warn('Network Error:', error.request);
+				// alert('Network error! Please check your internet connection.');
+			} else {
+				// Something else caused the error
+				console.warn('Unexpected Error:', error.message);
+				// alert('Unexpected error occurred!');
+			}
+			isLoader = false;
+		}
+	};
+
+	$: productApiCall(1, 5);
 </script>
 
-<!-- {
-  "id": 18,
-  "title": "MBJ Women's Solid Short Sleeve Boat Neck V ",
-  "price": 9.85,
-  "description": "95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem",
-  "category": "women's clothing",
-  "image": "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg",
-  "rating": {
-    "rate": 4.7,
-    "count": 130
-  }
-}, -->
-
-<div class="divider divider-primary my-[5rem]">New Release</div>
-
-<div class="mx-auto flex w-11/12 justify-around gap-2">
-	{#each { length: 4 } as _, i}
-		<!-- <div class="card w-96 bg-base-100 shadow-xl">
-			<figure>
-				<img
-					src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-					alt="Shoes"
-				/>
-			</figure>
-			<div class="card-body">
-				<h2 class="card-title">
-					Shoes!
-					<div class="badge badge-secondary bg-pink-500 text-accent">NEW</div>
-				</h2>
-				<p>If a dog chews shoes whose shoes does he choose?</p>
-				<div class="card-actions justify-start">
-					<div class="badge badge-outline">Fashion</div>
-					<div class="badge badge-outline">Products</div>
-				</div>
-				<div class="mt-2 w-full">
-					<button class="btn btn-primary w-full rounded-full text-accent">Buy Now</button>
-				</div>
-			</div>
-		</div> -->
-		<div class="flex w-1/5 flex-col">
-			<NewRealaseProductCard />
-		</div>
-	{/each}
-</div>
+<!-- {JSON.stringify(products)} -->
+{#if !isLoader}
+	<div class="mx-auto grid w-11/12 grid-cols-12 gap-4">
+		{#each products as item}
+			<ProductCard data={item} className="lg:col-span-3 md:col-span-4 sm:col-span-6 col-span-12" />
+		{/each}
+	</div>
+	<div class="my-7 flex w-full items-center justify-center">
+		<a class="mx-auto w-2/3 sm:w-2/3 md:w-3/4 lg:w-1/3" href="/products"
+			><span class="btn btn-primary !min-w-full rounded-full">See More</span></a
+		>
+	</div>
+{:else}
+	<div class="flex h-[35vh] w-full items-center justify-center">
+		<span class="loading loading-spinner loading-lg text-info"></span>
+	</div>
+{/if}
 
 <style>
 </style>
